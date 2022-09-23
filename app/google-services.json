@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "674384206672",
+    "firebase_url": "https://mobile-app-bcb2d-default-rtdb.firebaseio.com",
+    "project_id": "mobile-app-bcb2d",
+    "storage_bucket": "mobile-app-bcb2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674384206672:android:7083e5a574f696ed982a55",
+        "android_client_info": {
+          "package_name": "com.example.neighborhoodtalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674384206672-tgb94h7aakbue41b1lepj58vkv77vh6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWnwOFYNCjJaiztkpmgkQLB6izRkA1SFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674384206672-tgb94h7aakbue41b1lepj58vkv77vh6m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
