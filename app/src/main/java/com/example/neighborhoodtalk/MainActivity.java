@@ -63,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("login", password.getClass().getName() + " - " + dataSnapshot.getValue().toString().getClass().getName());
+                // Log.d("login", password.getClass().getName() + " - " + dataSnapshot.getValue().toString().getClass().getName());
                 if (dataSnapshot.getValue().toString().equals(password))
                 {
                     correct = true;
                 } else {
-                    if (dataSnapshot.exists() & (false & dataSnapshot.getValue().toString().equals(password))) {
+                    if (dataSnapshot.exists() & !(dataSnapshot.getValue().toString().equals(password))) {
                         Log.d("login", "wrong password");
                     }
                     correct = false;
