@@ -32,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
             EditText email = findViewById(R.id.signEmail);
             EditText password = findViewById(R.id.signPassword);
+            Intent nextPage = new Intent (this, mainPage.class);
+            startActivity(nextPage);
 
             if (checkUsername(email.getText().toString(), password.getText().toString())) {
-                Intent nextPage = new Intent (this, mainPage.class);
-                startActivity(nextPage);
+
 
                 Log.d("login", "ended");
             } else {
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Log.d("login", password.getClass().getName() + " - " + dataSnapshot.getValue().toString().getClass().getName());
-                if (dataSnapshot.getValue().toString().equals(password))
+                if (dataSnapshot.exists() & dataSnapshot.getValue().toString().equals(password))
                 {
                     correct = true;
                 } else {
