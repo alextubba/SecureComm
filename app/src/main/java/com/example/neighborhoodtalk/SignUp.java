@@ -12,7 +12,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity2 extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             myRef.setValue(password.getText().toString());
 
-            Intent nextPage = new Intent (this, MainActivity.class);
+            Intent nextPage = new Intent (this, SignIn.class);
             startActivity(nextPage);
         });
     }

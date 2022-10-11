@@ -48,7 +48,7 @@ public class mainPage extends AppCompatActivity {
             Request request = new Request
                     .Builder()
                     .post(requestBody)
-                    .url("http://127.0.0.1:5000/")
+                    .url("http://alexculp.pythonanywhere.com/")
                     .build();
             Log.d("sendingData", "sent");
             okHttpClient.newCall(request).enqueue(new Callback() {
@@ -58,7 +58,7 @@ public class mainPage extends AppCompatActivity {
                         @Override
                         public void run() {
                             // make an error screen
-                            Log.d("sendingData", "cannot sned");
+                            Log.d("sendingData", "cannot send");
                         }
                     });
                 }
@@ -69,7 +69,7 @@ public class mainPage extends AppCompatActivity {
                         @Override
                         public void run() {
                             try {
-                                Log.d("data", "retrieving");
+                                Log.d("data", response.body().string());
                                 title.setText(response.body().string());
                             } catch (IOException e) {
                                 e.printStackTrace();
