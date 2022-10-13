@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".SignUp">
 
+    <EditText
+        android:id="@+id/createPassword2"
+        android:layout_width="265dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="School Code"
+        android:inputType="number|textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createPassword" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="239dp"
@@ -22,40 +35,39 @@
         android:id="@+id/createUsername"
         android:layout_width="264dp"
         android:layout_height="49dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="56dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textShortMessage|textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/createPhone"
         android:layout_width="263dp"
         android:layout_height="47dp"
-        android:layout_marginTop="316dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="E-Mail"
         android:inputType="textWebEmailAddress|phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/createUsername" />
 
     <EditText
         android:id="@+id/createPassword"
         android:layout_width="265dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="268dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createPhone" />
 
     <Button
         android:id="@+id/signupButton"
