@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class SignIn extends AppCompatActivity {
 
     @Override
@@ -30,13 +32,13 @@ public class SignIn extends AppCompatActivity {
 
             EditText email = findViewById(R.id.signEmail);
             EditText password = findViewById(R.id.signPassword);
-            Intent nextPage = new Intent (this, mainPage.class);
-            startActivity(nextPage);
+
 
             if (checkUsername(email.getText().toString(), password.getText().toString())) {
 
-
                 Log.d("login", "ended");
+                Intent nextPage = new Intent (this, mainPage.class);
+                startActivity(nextPage);
             } else {
                 Log.d("login", "login failed");
             }
@@ -63,11 +65,18 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Log.d("login", password.getClass().getName() + " - " + dataSnapshot.getValue().toString().getClass().getName());
-                if (dataSnapshot.exists() & dataSnapshot.getValue().toString().equals(password))
+                if (!dataSnapshot.exists()) {
+                    return;
+                }
+
+                HashMap Data = (HashMap) dataSnapshot.getValue();
+
+                if (Data.get("pass").equals(password))
                 {
                     correct = true;
                 } else {
-                    if (dataSnapshot.exists() & !(dataSnapshot.getValue().toString().equals(password))) {
+                    if (dataSnapshot.exists() & !(Data.get("pass").equals(password))) {
+                        Log.d("login", (String) Data.get("pass"));
                         Log.d("login", "wrong password");
                     }
                     correct = false;

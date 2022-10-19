@@ -43,6 +43,7 @@ public class mainPage extends AppCompatActivity {
 
         report.setOnClickListener(view -> {
             Log.d("sendingData", "creating");
+
             RequestBody requestBody = buildRequestBody("new Message");
             OkHttpClient okHttpClient = new OkHttpClient();
             Request request = new Request
@@ -50,7 +51,9 @@ public class mainPage extends AppCompatActivity {
                     .post(requestBody)
                     .url("http://alexculp.pythonanywhere.com/")
                     .build();
+
             Log.d("sendingData", "sent");
+
             okHttpClient.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull IOException e) {
