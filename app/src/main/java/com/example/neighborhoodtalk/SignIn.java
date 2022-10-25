@@ -33,16 +33,7 @@ public class SignIn extends AppCompatActivity {
             EditText email = findViewById(R.id.signEmail);
             EditText password = findViewById(R.id.signPassword);
 
-
-            if (checkUsername(email.getText().toString(), password.getText().toString())) {
-
-                Log.d("login", "ended");
-                Intent nextPage = new Intent (this, mainPage.class);
-                startActivity(nextPage);
-            } else {
-                Log.d("login", "login failed");
-            }
-
+            checkUsername(email.getText().toString(), password.getText().toString());
         });
 
         Button signup = findViewById(R.id.signup);
@@ -54,9 +45,7 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
-    public boolean correct;
-
-    private boolean checkUsername(String usr, String password)
+    private void checkUsername(String usr, String password)
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users/" + usr);
@@ -73,13 +62,14 @@ public class SignIn extends AppCompatActivity {
 
                 if (Data.get("pass").equals(password))
                 {
-                    correct = true;
+                    // sign them in
+                    signinUser(Boolean.parseBoolean((String) Data.get("admin")));
                 } else {
                     if (dataSnapshot.exists() & !(Data.get("pass").equals(password))) {
                         Log.d("login", (String) Data.get("pass"));
                         Log.d("login", "wrong password");
                     }
-                    correct = false;
+                    // wrong credentials
                 }
             }
 
@@ -89,7 +79,16 @@ public class SignIn extends AppCompatActivity {
                 Log.d("login", "getting data failed");
             }
         });
+    }
 
-        return correct;
+    private void signinUser(boolean admin) {
+        Intent nextPage;
+
+        if (admin) {
+            nextPage = new Intent(this, AdminHome.class);
+        } else {
+            nextPage = new Intent(this, mainPage.class);
+        }
+        startActivity(nextPage);
     }
 }
