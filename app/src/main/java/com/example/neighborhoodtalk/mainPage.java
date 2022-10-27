@@ -54,7 +54,7 @@ public class mainPage extends AppCompatActivity {
         report.setOnClickListener(view -> {
             Log.d("sendingData", "creating");
 
-            saveReport();
+            getReportNum();
         });
     }
 
@@ -100,12 +100,12 @@ public class mainPage extends AppCompatActivity {
         });
     }
 
-    private void saveReport() {
+    private void saveReport(Integer amount) {
         TextView title = findViewById(R.id.textView2);
         TextView desc = findViewById(R.id.Description);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("reports/report" + getReportNum());
+        DatabaseReference myRef = database.getReference("reports/report" + amount);
 
         Hashtable<String, String> data = new Hashtable<String, String>();
 
@@ -121,13 +121,14 @@ public class mainPage extends AppCompatActivity {
     }
 
     public Integer Amount = 0;
+    public boolean debounce = false;
 
-    public Integer getReportNum() {
+    public void getReportNum() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("reports/");
-        Amount = 0;
+        Amount = 1;
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Log.d("login", password.getClass().getName() + " - " + dataSnapshot.getValue().toString().getClass().getName());
@@ -135,11 +136,19 @@ public class mainPage extends AppCompatActivity {
                     return;
                 }
 
+                if (debounce == true) {
+                    return;
+                }
+
                 HashMap Data = (HashMap) dataSnapshot.getValue();
 
                 for (Object key : Data.keySet()) {
                     Amount += 1;
+
                 }
+
+                saveReport(Amount);
+                debounce = false;
             }
 
 
@@ -148,7 +157,5 @@ public class mainPage extends AppCompatActivity {
                 Log.d("login", "getting data failed");
             }
         });
-
-        return Amount;
     };
 }

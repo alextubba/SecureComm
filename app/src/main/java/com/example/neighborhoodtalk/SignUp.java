@@ -68,7 +68,7 @@ public class SignUp extends AppCompatActivity {
 
                     if (String.valueOf(school.get("studentCode")).equals(code)) {
                         // allow signup for student because right access code
-                        saveUser();
+                        saveUser((String) key);
                         break;
                     } else {
                         // deny access
@@ -84,7 +84,7 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-    private void saveUser() {
+    private void saveUser(String school) {
         EditText usr = findViewById(R.id.createUsername);
         EditText email = findViewById(R.id.createPhone);
         EditText password = findViewById(R.id.createPassword);
@@ -97,6 +97,7 @@ public class SignUp extends AppCompatActivity {
         data.put("pass", password.getText().toString());
         data.put("email", email.getText().toString());
         data.put("admin", "false");
+        data.put("school", school);
         Log.d("signup", String.valueOf(data));
 
         myRef.setValue(data);

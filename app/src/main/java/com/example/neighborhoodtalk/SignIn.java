@@ -63,7 +63,7 @@ public class SignIn extends AppCompatActivity {
                 if (Data.get("pass").equals(password))
                 {
                     // sign them in
-                    signinUser(Boolean.parseBoolean((String) Data.get("admin")));
+                    signinUser(Boolean.parseBoolean((String) Data.get("admin")), (String) Data.get("school"));
                 } else {
                     if (dataSnapshot.exists() & !(Data.get("pass").equals(password))) {
                         Log.d("login", (String) Data.get("pass"));
@@ -81,7 +81,7 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
-    private void signinUser(boolean admin) {
+    private void signinUser(boolean admin, String usr) {
         Intent nextPage;
 
         if (admin) {
@@ -89,6 +89,8 @@ public class SignIn extends AppCompatActivity {
         } else {
             nextPage = new Intent(this, mainPage.class);
         }
+
+        nextPage.putExtra("school", usr);
         startActivity(nextPage);
     }
 }
