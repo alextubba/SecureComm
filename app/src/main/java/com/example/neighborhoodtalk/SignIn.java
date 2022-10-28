@@ -50,7 +50,7 @@ public class SignIn extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users/" + usr);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Log.d("login", password.getClass().getName() + " - " + dataSnapshot.getValue().toString().getClass().getName());
@@ -63,7 +63,7 @@ public class SignIn extends AppCompatActivity {
                 if (Data.get("pass").equals(password))
                 {
                     // sign them in
-                    signinUser(Boolean.parseBoolean((String) Data.get("admin")), (String) Data.get("school"));
+                    signinUser(Boolean.parseBoolean((String) Data.get("admin")), (String) Data.get("school"), (String) dataSnapshot.getKey());
                 } else {
                     if (dataSnapshot.exists() & !(Data.get("pass").equals(password))) {
                         Log.d("login", (String) Data.get("pass"));
@@ -81,7 +81,7 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
-    private void signinUser(boolean admin, String usr) {
+    private void signinUser(boolean admin, String school, String name) {
         Intent nextPage;
 
         if (admin) {
@@ -90,7 +90,8 @@ public class SignIn extends AppCompatActivity {
             nextPage = new Intent(this, mainPage.class);
         }
 
-        nextPage.putExtra("school", usr);
+        nextPage.putExtra("school", school);
+        nextPage.putExtra("name", name);
         startActivity(nextPage);
     }
 }

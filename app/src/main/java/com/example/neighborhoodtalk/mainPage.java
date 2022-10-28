@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -48,13 +49,15 @@ public class mainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_homepage);
 
-
         Button report = findViewById(R.id.reportButton);
+
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
 
         report.setOnClickListener(view -> {
             Log.d("sendingData", "creating");
 
-            getReportNum();
+            getReportNum(name);
         });
     }
 
@@ -100,8 +103,8 @@ public class mainPage extends AppCompatActivity {
         });
     }
 
-    private void saveReport(Integer amount) {
-        TextView title = findViewById(R.id.textView2);
+    private void saveReport(Integer amount, String name) {
+        TextView title = findViewById(R.id.titleInput);
         TextView desc = findViewById(R.id.Description);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -109,9 +112,23 @@ public class mainPage extends AppCompatActivity {
 
         Hashtable<String, String> data = new Hashtable<String, String>();
 
+        String importance = "green";
+        RadioButton green = findViewById(R.id.green);
+        RadioButton yellow = findViewById(R.id.yellow);
+        RadioButton red = findViewById(R.id.red);
+
+        if (green.isChecked()) {
+            importance = "green";
+        } else if (yellow.isChecked()) {
+            importance = "yellow";
+        } else if (red.isChecked()) {
+            importance = "red";
+        }
+
         data.put("title", title.getText().toString());
         data.put("desc", desc.getText().toString());
-        data.put("threat", "false");
+        data.put("threat", importance);
+        data.put("name", name);
         Log.d("signup", String.valueOf(data));
 
         myRef.setValue(data);
@@ -123,7 +140,7 @@ public class mainPage extends AppCompatActivity {
     public Integer Amount = 0;
     public boolean debounce = false;
 
-    public void getReportNum() {
+    public void getReportNum(String name) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("reports/");
         Amount = 1;
@@ -147,7 +164,7 @@ public class mainPage extends AppCompatActivity {
 
                 }
 
-                saveReport(Amount);
+                saveReport(Amount, name);
                 debounce = false;
             }
 

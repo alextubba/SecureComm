@@ -30,12 +30,15 @@ public class AdminSign extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         Button signup = findViewById(R.id.adminCreate);
+        EditText schoolCode = findViewById(R.id.adminSchoolCode3);
+
+        Intent intent = getIntent();
+        String schoolId = intent.getStringExtra("schoolCode");
+
+        schoolCode.setText(schoolId);
 
         signup.setOnClickListener(view -> {
             Log.d("signup", "starting");
-
-
-            EditText schoolCode = findViewById(R.id.adminSchoolCode3);
 
             // check if student inputted the right access code for their school
             checkCode(schoolCode.getText().toString());

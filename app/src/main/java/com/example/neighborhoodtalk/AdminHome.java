@@ -30,7 +30,7 @@ public class AdminHome extends AppCompatActivity {
         String schoolId = intent.getStringExtra("school");
 
         getCodes(schoolId);
-        checkForReports();
+        checkForReports(schoolId);
 
     }
 
@@ -62,7 +62,7 @@ public class AdminHome extends AppCompatActivity {
         });
     }
 
-    private void checkForReports() {
+    private void checkForReports(String schoolId) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("reports/");
 
@@ -80,17 +80,29 @@ public class AdminHome extends AppCompatActivity {
                 linearLayout.removeAllViews();
 
                 for (Object key : Data.keySet()) {
+                    if (key.equals("baseData")) {
+                        continue;
+                    }
+
                     HashMap report = (HashMap) Data.get(key);
 
                     final Button text = new Button(AdminHome.this);
-                    text.setText((CharSequence) report.get("desc"));
+                    text.setText((CharSequence) report.get("title"));
                     text.setTextSize(18);
                     linearLayout.addView(text);
 
                     text.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            Intent nextPage = new Intent (AdminHome.this, reportPage.class);
+                            nextPage.putExtra("Title", (String) report.get("title"));
+                            nextPage.putExtra("Desc", (String) report.get("desc"));
+                            nextPage.putExtra("Threat", (String) report.get("threat"));
+                            nextPage.putExtra("Name", (String) report.get("name"));
+                            nextPage.putExtra("School", (String) schoolId);
+                            nextPage.putExtra("Report", (String) key);
 
+                            startActivity(nextPage);
                         }
                     });
                 }

@@ -25,6 +25,8 @@ public class Registration extends AppCompatActivity {
 
         admin.setOnClickListener(view -> {
             Intent nextPage = new Intent (this, AdminSign.class);
+            nextPage.putExtra("schoolCode", "");
+
             startActivity(nextPage);
         });
     }

@@ -20,93 +20,84 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
-        android:layout_width="131dp"
-        android:layout_height="33dp"
+        android:id="@+id/textView13"
+        android:layout_width="205dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:gravity="left|center_vertical"
+        android:text="Description:"
+        android:textSize="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
+    <TextView
+        android:id="@+id/importText"
+        android:layout_width="304dp"
+        android:layout_height="59dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:gravity="left|center_vertical"
-        android:text="Title"
-        android:textSize="24dp"
+        android:gravity="top|left"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="264dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="TITLE"
+        android:textSize="26dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="124dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:gravity="left|center_vertical"
-        android:text="Description"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="127dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:gravity="left|center_vertical"
-        android:text="Importance"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-    <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/descText"
         android:layout_width="313dp"
-        android:layout_height="76dp"
+        android:layout_height="88dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="TITLE"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="323dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="--"
+        android:layout_marginTop="16dp"
+        android:text="DESC"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="324dp"
-        android:layout_height="117dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:text="--"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
     <Button
-        android:id="@+id/button"
+        android:id="@+id/removeButton5"
         android:layout_width="143dp"
         android:layout_height="55dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="24dp"
-        android:text="EMERGENCY"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="143dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="56dp"
         android:text="REMOVE"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="200dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="28dp"
+        android:text="Importance:"
+        android:textSize="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descText" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="204dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="28dp"
+        android:text="Sent By: Alex Culp"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/importText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

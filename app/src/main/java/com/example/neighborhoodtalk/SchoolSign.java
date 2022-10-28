@@ -50,6 +50,7 @@ public class SchoolSign extends AppCompatActivity {
             myRef.setValue(data);
 
             Intent nextPage = new Intent (this, AdminSign.class);
+            nextPage.putExtra("schoolCode", String.valueOf(adminCode));
             startActivity(nextPage);
         });
     }
