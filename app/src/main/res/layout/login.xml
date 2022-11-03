@@ -39,14 +39,14 @@
 
     <EditText
         android:id="@+id/signPassword"
-        android:layout_width="268dp"
+        android:layout_width="270dp"
         android:layout_height="55dp"
         android:layout_marginTop="352dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

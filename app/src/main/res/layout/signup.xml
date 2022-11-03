@@ -37,7 +37,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="56dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Name (EX: johnSmith)"
         android:inputType="textShortMessage|textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"

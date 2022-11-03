@@ -65,7 +65,7 @@ public class AdminSign extends AppCompatActivity {
                     Log.d("signup", String.valueOf(String.valueOf(school.get("adminCode")).equals(code)));
                     if (String.valueOf(school.get("adminCode")).equals(code)) {
                         // allow signup for student because right access code
-                        saveUser();
+                        saveUser((String) key);
                         break;
                     } else {
                         // deny access
@@ -81,7 +81,7 @@ public class AdminSign extends AppCompatActivity {
         });
     }
 
-    private void saveUser() {
+    private void saveUser(String school) {
         EditText usr = findViewById(R.id.adminUser);
         EditText phone = findViewById(R.id.adminPhone);
         EditText password = findViewById(R.id.adminPass);
@@ -94,6 +94,7 @@ public class AdminSign extends AppCompatActivity {
         data.put("pass", password.getText().toString());
         data.put("phone", phone.getText().toString());
         data.put("admin", "true");
+        data.put("school", school);
         Log.d("signup", String.valueOf(data));
 
         myRef.setValue(data);

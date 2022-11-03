@@ -48,6 +48,7 @@ public class AdminHome extends AppCompatActivity {
                 if (!dataSnapshot.exists()) {
                     return;
                 }
+                Log.d("login", "got data");
                 HashMap Data = (HashMap) dataSnapshot.getValue();
 
                 // change code text to correct codes
