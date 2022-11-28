@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -53,6 +55,11 @@ public class mainPage extends AppCompatActivity {
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
+
+        Spinner dropdown = findViewById(R.id.titleInput);
+        String[] items = new String[]{"Violence", "Substance Abuse", "Behavior", "Other"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter);
 
         report.setOnClickListener(view -> {
             Log.d("sendingData", "creating");
@@ -104,7 +111,7 @@ public class mainPage extends AppCompatActivity {
     }
 
     private void saveReport(Integer amount, String name) {
-        TextView title = findViewById(R.id.titleInput);
+        Spinner title = findViewById(R.id.titleInput);
         TextView desc = findViewById(R.id.Description);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -125,7 +132,7 @@ public class mainPage extends AppCompatActivity {
             importance = "red";
         }
 
-        data.put("title", title.getText().toString());
+        data.put("title", title.getSelectedItem().toString());
         data.put("desc", desc.getText().toString());
         data.put("threat", importance);
         data.put("name", name);
