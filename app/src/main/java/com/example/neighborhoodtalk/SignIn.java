@@ -2,8 +2,11 @@ package com.example.neighborhoodtalk;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -43,6 +46,17 @@ public class SignIn extends AppCompatActivity {
 
             Log.d("signup", "signup opened");
         });
+
+        SharedPreferences sp1 = this.getSharedPreferences("Login", MODE_PRIVATE);
+
+        if (sp1 != null) {
+            boolean Admin = Boolean.parseBoolean(sp1.getString("Admin", null));
+            String School = sp1.getString("School", null);
+            String Name = sp1.getString("Name", null);
+
+            signinUser(Admin, School, Name);
+        }
+
     }
 
     private void checkUsername(String usr, String password)
@@ -82,6 +96,14 @@ public class SignIn extends AppCompatActivity {
     }
 
     private void signinUser(boolean admin, String school, String name) {
+        // Save login for next time user opens app
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+        SharedPreferences.Editor Ed=sp.edit();
+        Ed.putString("Admin", String.valueOf(admin));
+        Ed.putString("School", school);
+        Ed.putString("Name", name);
+        Ed.commit();
+
         Intent nextPage;
 
         if (admin) {
